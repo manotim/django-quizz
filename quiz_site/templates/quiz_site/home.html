@@ -1,0 +1,107 @@
+{% extends "quiz_site/base.html" %}
+{% block style %}
+{% comment %} body {
+    font-family: Arial, sans-serif;
+    margin: 0; /* Remove default body margin */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+} {% endcomment %}
+
+.main {
+    margin: 0 10px; 
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+.my_container {
+    display: flex;
+    gap: 20px; /* Adjust the gap between inner divs */
+    /* justify-content: space-between; Remove this property */
+}
+
+.inner-div {
+    border: 2px solid #ccc; /* Border color */
+    border-radius: 24px;
+    padding: 10px; /* Adjust the padding */
+    width: calc(33% - 10px); /* Equal width for inner divs, considering the gap */
+}
+
+.inner-div i {
+    font-size: 20px; /* Adjust the font size as needed */
+    border: 1px solid #ffdc60;
+    border-radius: 50%;
+    background-color: #ffdc60;
+    margin-right: 5px;
+}
+
+.inner-div .service {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* Adjust as needed for spacing */
+}
+
+.rates {
+    font-size: 48px;
+}
+
+.check-mark {
+    color: green;
+    font-size: 50%;
+}
+
+.subtitle {
+    color: cyan;
+    margin: 20px;
+}
+
+h1 {
+    font-weight: bolder;
+    margin: 30px;
+}
+
+.service-info {
+    {% comment %} font-style: italic; {% endcomment %}
+    text-align: left;
+    margin-bottom: 10px;
+}
+{% endblock style %}
+{% block content %}
+    <div class="main-container">
+        <div class="main">
+            <h1>Sign Up In Minutes. Try Naxlex Nursing Risk-Free.</h1>
+            <div class="my_container">
+                {% for risk in risks %}
+                <div class="inner-div">
+                    <h2>{{ risk.position }}</h2>
+                    {{ risk.icon|safe }}
+                    <h3>{{ risk.risk_description }}</h3>
+                </div>
+                {% endfor %}
+            </div>
+    
+    
+        </div>
+    
+        <div class="main">
+            <h1>Our Premium Teas 7 & Hesi A2 & Nursing Packages.</h1>
+            <h3 class="subtitle">This is not a subscription. Its one time payment!</h3>
+            <div class="my_container">
+                {% for package in packages %}
+                <div class="inner-div">
+                    <h3>{{ package.package_name }}</h3>
+                    <hr/>
+                    <h4><b><span class="rates">${{package.rate}}</span></b>/{{package.days}} - Day Access</h4>
+                    <p class="service"><i class="bi bi-check"></i><span class="service-info">{{package.services.service_1}}</span></p>
+                    <p class="service"><i class="bi bi-check"></i><span class="service-info">{{package.services.service_2}}</span></p>
+                    <p class="service"><i class="bi bi-check"></i><span class="service-info">{{package.services.service_2}}</span></p>
+                    <p class="service"><i class="bi bi-check"></i><span class="service-info">{{package.services.service_3}}</span></p>
+                    <p class="service"><i class="bi bi-check"></i><span class="service-info">{{package.services.service_4}}</span></p>
+                    <p class="service"><i class="bi bi-check"></i><span class="service-info">{{package.services.service_5}}</span></p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}

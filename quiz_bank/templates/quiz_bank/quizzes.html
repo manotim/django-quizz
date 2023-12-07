@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    {% load custom_filters %}
+
+<head>
+    {% if title %}
+        <title>Django Quiz - {{ title }}</title>
+    {% else %}
+        <title>Django Quiz</title>
+    {% endif %}
+    <style>
+        .answer-section {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        {% for question in questions %}
+        <h1>{{ forloop.counter }}. {{ question.question_text }}</h1>
+        <div class="options">
+            {% for option_key, option_value in question.items %}
+            {% if "option_" in option_key and option_key != 'correct_answer' %}
+            {% with letter=forloop.counter|letter %}
+            <input type="radio" name="{{ question.question_text }}" value="{{ option_value }}">
+            {{ letter }}. {{ option_value }}<br>
+            {% endwith %}
+            {% endif %}
+            {% endfor %}
+        </div>
+        <button type="button" class="toggle-answer">Show Answer</button>
+        <div class="answer-section">
+            <i>
+                <p>Correct Answer is: <b>{{ question.correct_answer }}</b></p>
+            </i>
+            <h4>Explanation:</h4>
+            <p>{{ question.explanation }}</p>
+        </div>
+        {% endfor %}
+    </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggleButtons = document.querySelectorAll('.toggle-answer');
+            toggleButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const answerSection = this.nextElementSibling;
+                    answerSection.style.display = answerSection.style.display === 'none' ? 'block' : 'none';
+                    this.innerText = answerSection.style.display === 'none' ? 'Show Answer' : 'Hide Answer';
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
