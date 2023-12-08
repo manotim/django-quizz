@@ -1,14 +1,5 @@
 {% extends "quiz_site/base.html" %}
 {% block style %}
-{% comment %} body {
-    font-family: Arial, sans-serif;
-    margin: 0; /* Remove default body margin */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: auto;
-} {% endcomment %}
-
 .main {
     margin: 0 10px; 
     text-align: center;
@@ -66,8 +57,63 @@ h1 {
     text-align: left;
     margin-bottom: 10px;
 }
+
+.landing-page {
+    {% comment %} background: #007aff; {% endcomment %}
+}
+
+/* Add this CSS code */
+.position-relative img {
+
+}
+
+.hero-title {
+    color: #007aff;
+}
+
+.hero-paragraph, .hero-button {
+    margin-left: 32px; /* Adjust the value as needed */
+}
+
+.my-hero-page {
+    margin-bottom: 56px;
+}
+
 {% endblock style %}
 {% block content %}
+<section class="py-lg-16 py-8 landing-page my-hero-page">
+    <!-- container -->
+   <div class="container">
+      <!-- row -->
+     <div class="row align-items-center">
+        <!-- col -->
+       <div class="col-lg-6 mb-6 mb-lg-0">
+         <div class="">
+              <!-- heading -->
+           <h1 class="display-3 fw-bold mb-3 hero-title">Most trusted TEAS 7, HESI A2 & Nursing test prep with a guaranteed pass of 90%</h1>
+            <!-- para -->
+           <p class="pe-lg-10 mb-5 hero-paragraph">Money-back guarantee if you use our service and fail the actual exam. Option of a personalized live tutor on your area of weakness.</p>
+              <!-- btn -->
+           <a href="#" class="btn btn-primary hero-button">Sign Up & Get Started</a>
+         </div>
+       </div>
+        <!-- col -->
+       <div class="col-lg-6 d-flex justify-content-center">
+          <!-- images -->
+        <div class="position-relative">
+         <img src="https://images.halloweencostumes.com/media/13/nurse/child-nurse-costume.jpg" alt="" class=" ">
+         <img src="https://images.halloweencostumes.com/media/13/nurse/child-nurse-costume.jpg" alt="" class=" position-absolute end-0 bottom-0">
+         <img src="https://images.halloweencostumes.com/media/13/nurse/child-nurse-costume.jpg" alt="" class=" position-absolute top-0 ms-lg-n10 ms-n19">
+         <img src="https://images.halloweencostumes.com/media/13/nurse/child-nurse-costume.jpg" alt="" class=" position-absolute bottom-0 start-0 ms-lg-n14 ms-n6 mb-n7">
+         <img src="https://images.halloweencostumes.com/media/13/nurse/child-nurse-costume.jpg" alt="" class=" position-absolute bottom-0 mb-10 ms-n10 ms-lg-n1 ">
+         <img src="https://images.halloweencostumes.com/media/13/nurse/child-nurse-costume.jpg" alt="" class=" position-absolute top-0  start-0 mt-18 ms-lg-n19 ms-n8">
+         <img src="https://images.halloweencostumes.com/media/13/nurse/child-nurse-costume.jpg" alt="" class=" position-absolute top-0  start-0 ms-lg-n14 ms-n5">
+
+        </div>
+       </div>
+     </div>
+   </div>
+ </section>
     <div class="main-container">
         <div class="main">
             <h1>Sign Up In Minutes. Try Naxlex Nursing Risk-Free.</h1>
