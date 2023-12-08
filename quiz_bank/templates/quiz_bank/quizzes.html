@@ -20,14 +20,14 @@
         {% for question in questions %}
         <h1>{{ forloop.counter }}. {{ question.question_text }}</h1>
         <div class="options">
-            {% for option_key, option_value in question.items %}
-            {% if "option_" in option_key and option_key != 'correct_answer' %}
-            {% with letter=forloop.counter|letter %}
-            <input type="radio" name="{{ question.question_text }}" value="{{ option_value }}">
-            {{ letter }}. {{ option_value }}<br>
-            {% endwith %}
-            {% endif %}
-            {% endfor %}
+            <input type="radio" name="{{ question.question_text }}" value="{{ question.option_a }}">
+            A. {{ question.option_a }}<br>
+            <input type="radio" name="{{ question.question_text }}" value="{{ question.option_b }}">
+            B. {{ question.option_b }}<br>
+            <input type="radio" name="{{ question.question_text }}" value="{{ question.option_c }}">
+            C. {{ question.option_c }}<br>
+            <input type="radio" name="{{ question.question_text }}" value="{{ question.option_d }}">
+            D. {{ question.option_d }}<br>
         </div>
         <button type="button" class="toggle-answer">Show Answer</button>
         <div class="answer-section">

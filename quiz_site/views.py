@@ -1,22 +1,6 @@
-from django.shortcuts import render 
+from django.shortcuts import render
+from .models import *
 
-risks = [
-    {
-        'position': '1',
-        'icon': '<i class="bi bi-person-square"></i>',
-        'risk_description': 'Create an account'
-    },
-    {
-        'position': '2',
-        'icon': '<i class="bi bi-phone"></i>',
-        'risk_description': 'Test for free. No credit card required.'
-    },
-    {
-        'position': '3',
-        'icon': '<i class="bi bi-laptop"></i>',
-        'risk_description': 'Pick your package on your pricing.'
-    }
-]
 
 packages = [
     {
@@ -72,8 +56,8 @@ packages = [
 # Create your views here.
 def home(request):
     context = {
-        'risks': risks,
-        'packages': packages
+        'risks': Risk.objects.all(),
+        'packages': Package.objects.all()
     }
     return render(request, 'quiz_site/home.html', context)
 

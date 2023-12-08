@@ -134,7 +134,7 @@ h1 {
             <h1>Our Premium Teas 7 & Hesi A2 & Nursing Packages.</h1>
             <h3 class="subtitle">This is not a subscription. Its one time payment!</h3>
             <div class="my_container">
-                {% for package in packages %}
+                {% comment %} {% for package in packages %}
                 <div class="inner-div">
                     <h3>{{ package.package_name }}</h3>
                     <hr/>
@@ -146,7 +146,20 @@ h1 {
                     <p class="service"><i class="bi bi-check"></i><span class="service-info">{{package.services.service_4}}</span></p>
                     <p class="service"><i class="bi bi-check"></i><span class="service-info">{{package.services.service_5}}</span></p>
                 </div>
-                {% endfor %}
+                {% endfor %} {% endcomment %}
+                {% for package in packages %}
+                <div class="inner-div">
+                    <h3>{{ package.package_name }}</h3>
+                    <hr/>
+                    <h4><b><span class="rates">${{ package.rate }}</span></b>/{{ package.days }} - Day Access</h4>
+                    
+                    {% for service in package.services.all %}
+                        <p class="service"><i class="bi bi-check"></i><span class="service-info">{{ service.description }}</span></p>
+                    {% endfor %}
+                    
+                </div>
+            {% endfor %}
+
             </div>
         </div>
     </div>
