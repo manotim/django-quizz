@@ -1,0 +1,49 @@
+{% extends "quiz_site/base.html" %}
+{% load crispy_forms_tags %}
+{% block style %}
+  body {
+    background: linear-gradient(90deg, rgba(188,62,207,1) 0%, rgba(59,64,194,1) 50%);
+    margin: 0;
+    overflow-x: hidden;
+  }
+
+  .content-section {
+    background: #ffffff;
+    padding: 20px;
+    border: 1px solid #dddddd;
+    margin: 100px 50px;
+    border-radius: 3px;
+    width: 60%;
+  }
+
+  .content-section input {
+    text-align: left; /* Adjust the alignment of input fields */
+  }
+
+  .btn-outline-info {
+    background: linear-gradient(90deg, rgba(188,62,207,1) 0%, rgba(59,64,194,1) 50%);
+    color: #fff;
+    width: 90%;
+    padding: 10px 20px;
+    margin: 15px;
+  }
+{% endblock style %}
+{% block content %}
+  <div class="content-section">
+    <form method="POST">
+      {% csrf_token %}
+      <fieldset class="form-group">
+        <legend class="border-bottom mb-4" style="text-align: center;">Login</legend>
+        {{ form|crispy }}
+      </fieldset>
+      <div class="form-group">
+        <button class="btn btn-outline-info" type="submit">Login</button>
+      </div>
+    </form>
+    <div class="border-top pt-3">
+      <small class="text-muted">
+        Need An Account? <a class="ml-2" href="{% url 'register' %}">Sign Up Now</a>
+      </small>
+    </div>
+  </div>
+{% endblock content %}
