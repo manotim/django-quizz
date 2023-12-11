@@ -12,10 +12,27 @@
         .answer-section {
             display: none;
         }
+
+        .site-btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: blue;
+            color: white;
+            text-decoration: none;
+            border: 2px solid white;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .site-btn a {
+            color: white;
+            text-decoration: none;
+        }
     </style>
 </head>
 
 <body>
+    <button class="site-btn"><a href="{% url 'quiz-home' %}">Back to Site</a></button>
     <form>
         {% for question in questions %}
         <h1>{{ forloop.counter }}. {{ question.question_text }}</h1>
