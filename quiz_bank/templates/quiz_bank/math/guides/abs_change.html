@@ -1,0 +1,78 @@
+{% extends 'quiz_bank/base.html' %}
+
+{% block title %}Django Quiz - Category: {{ category }}{% endblock title %}
+
+{% block styles %}
+<style>
+    .dashboard-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: space-between;
+    }
+
+    .card {
+        width: calc(43.33% - 20px);  /* 33.33% width with 20px gap */
+        background-color: #f0f0f0;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    
+
+    @media screen and (max-width: 768px) {
+        /* For screens smaller than 768px, display 2 cards per row */
+        .card {
+            width: calc(50% - 20px);
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        /* For screens smaller than 480px, display 1 card per row */
+        .card {
+            width: 100%;
+        }
+    }
+</style>
+{% endblock styles %}
+
+{% block content %}
+<main class="guides">
+    <h4 style="color: green;">Absolute Change and Relative Change</h4>
+    
+    <br>
+    <div class="dashboard-container">
+        <div class="guides-container">
+            <h5><b><u><i>Learning Objectives:</i></u></b></h5>
+            <p>Bt the end of this lesson, the learner should be able to:</p>
+            <ul>
+                <li>Find Absolute Change</li>
+                <li>Find Relative Change</li>
+                <li>Find Percentage Change</li>
+            </ul>
+            <h5><b><u>Learning Objectives:</u></b></h5>
+            <p>Given the initial and final (future) values, absolute and relative changes are determined as follows:</p>
+            <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+                <mrow>
+                  <mi>speed</mi>
+                  <mo>=</mo>
+                  <mfrac linethickness="0">
+                    <mrow>
+                      <mi>distance</mi>
+                    </mrow>
+                    <mrow>
+                      <mi>time</mi>
+                    </mrow>
+                  </mfrac>
+                </mrow>
+              </math>
+              <p>From the above definitions, absolute change has same units as the original quantity and is always positive, because we take absolute values of the resulting change. However, relative change is a fraction, which is unitless.</p>
+              <h5>Questions</h5>
+              <ol>
+                <li>A person weighed themselves at 120 lb. Three months later they weighed themselves at 160 lb. Which of the following is the percent of weight the person gained over 3 months?</li>
+              </ol>
+              <a href="#" class="btn-secondary">Take Practice Test</a>
+        </div>
+    </div>
+</main>
+{% endblock content %}

@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'quiz_bank/sidebar.css' %}">
+    <title>{% block title %}Django Quiz{% endblock %}</title>
+
+<body>
+    <!-- Navbar -->
+    <nav class='navbar'>
+        <h4>Dashboard</h4>
+        <div class="profile">
+            <span class="fas fa-search"></span>
+            <img class="profile-image" src="https://plus.unsplash.com/premium_photo-1683121366070-5ceb7e007a97?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D">
+            <p class="profile-name">Mike Manoti<button class="my-button" id="myButton">Click Me!</button></p>
+        </div>
+    </nav>
+    
+    <div class="menu-btn">
+        <i class="fas fa-bars"></i>
+    </div>
+   
+    <div class="side-bar">
+     <header>
+        <div class="close-btn">
+            <i class="fas fa-times"></i>
+        </div>
+        <img src="https://plus.unsplash.com/premium_photo-1683121366070-5ceb7e007a97?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D">
+        <h1>Logo Here</h1>
+    </header>
+
+    <div class="menu">
+        <div class="item"><a href="#"><i class="fas fa-solid fa-book">
+        </i>TEAS<i class="fas fa-angle-right dropdown"></i></a>
+        <div class="sub-menu" style="display: none;">
+            <a href="" class="sub-item"><i class="fas fa-solid item1 fa-calculator"></i>Math</a>
+            <a href="" class="sub-item"><i class="fas fa-solid item1 fa-language"></i>Language</a>
+            <a href="" class="sub-item"><i class="fas fa-solid item1 fa-book-open"></i>Reading</a>
+            <a href="" class="sub-item"><i class="fas fa-solid item1 fa-rocket"></i>Science</a>
+        </div>
+    </div>
+        <div class="item"><a href="#"><i class="fas fa-chart-line"></i>Statistics</a></div>
+        <div class="item"><a href="#"><i class="fas fa-id-card"></i>Contacts</a></div>
+        <div class="item"><a href="#"><i class="fas fa-cog"></i>Settings</a></div>
+    </div>
+    </div>
+
+     
+
+    {% block content %}{% endblock %}
+
+<!--Jquery CDN Link-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script>
+    var button = document.getElementById('myButton');
+    button.addEventListener('click', function() {
+        console.log('Button Clicked!')
+    });
+
+    var submenuItems = document.querySelectorAll('.item');
+
+    function toggleSubmenu() {
+        var submenu = this.querySelector('.sub-menu');
+        submenu.style.display = submenu.style.display ==== 'none' ? 'block' : 'none';
+        console.log('Menu clicked to display submenu');
+        submenuItems.forEach(function(item) {
+            item.addEventListener('click', toggleSubmenu);
+        })
+        
+    }
+
+    
+</script>
+</body>
+
+</html>

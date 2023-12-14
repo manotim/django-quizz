@@ -1,0 +1,467 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'quiz_bank/categories.css' %}">
+    <title>{% block title %}Django Quiz{% endblock %}</title>
+    <style>
+        {% block style %}{% endblock style %}
+    </style>
+    <!-- ... rest of the head content ... -->
+    <style>
+        /* Add any common styles for your entire site here */
+        * {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+        }
+        body {
+            background: #red;
+        }
+
+        h2 {
+            font-size: 18px;
+            padding: 15px 0;
+        }
+
+        h2 > span {
+            font-size: 14px;
+        }
+
+        h3 {
+            margin-bottom: 1rem;
+        }
+
+        .navbar {
+            display: flex;
+            position: fixed;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            height: 55px;
+            top: 0;
+            left: 0;
+            background-color: #fff;
+            z-index: 2;
+            padding-left: 6rem;
+        }
+
+        .profile {
+            display: flex;
+            width: 32%;
+            max-width: 200px;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .profile-image {
+            width: 30px;
+            height: 30px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .profile-name {
+            font-size: 0.9rem;
+            margin-left: -20px;
+        }
+        .site-btn {
+            padding: 7px 12px;
+            font-size: 12px;
+            background-color: blue;
+            color: white;
+            text-decoration: none;
+            border: 1px solid white;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .site-btn a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .side-toggle {
+            position: fixed;
+            z-index: 2;
+            top: 10;
+            left: 0;
+            float: right;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        #toggle {
+            display: none;
+        }
+
+    
+        #toggle:checked ~ main {
+            padding: 6rem 2rem 2rem 6rem;
+        }
+
+        main {
+            min-height: 100%;
+            padding: 5rem 0.8rem 1.5rem 10rem;
+            color: #201f2b;
+        }
+
+        .page-heading {
+            margin-left: 70px;
+        }
+
+         .dashboard-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: auto;
+            gap: 1rem;
+            grid-template-areas: 
+              "total1 total2 total3" 
+              "total4 total5 total6"
+              "total7 total8 tota9";
+             
+        }
+
+        .card {
+            background-color: #fff;
+            margin-left: 70px;
+            padding: 0.5rem;
+            cursor: pointer;
+            border-radius: 16px; 
+        }
+
+       
+        .total1 {
+            grid-area: total1;
+            background-color: #2d972e;
+            color: #fff;
+        }
+
+        .total2 {
+            grid-area: total2;
+            background-color: #ffa705;
+            color: #fff;
+        }
+
+        .total3 {
+            grid-area: total3;
+            background-color: #9132bd;
+            color: #fff;
+        }
+
+        .total4 {
+            grid-area: total4;
+            background-color: #15a1fe;
+            color: #fff;
+        } 
+
+       
+
+         .info {
+            display: grid;
+            grid-auto-flow: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .info-detail h3 {
+            font-size: 24px;
+        }
+
+        .info-detail p {
+            font-size: 14px;
+        }
+
+        .info-image {
+            margin: 12px;
+            font-size: 50px;
+            color: #2d2b98;
+        } 
+
+        .detail-header {
+            display: grid;
+            grid-auto-flow: column;
+            justify-content: space-between;
+            align-atems: center;
+        }
+
+        .detail-header button {
+            height: 30px;
+            width: 120px;
+            border: 1px solid #2d2b98;
+            background-color: #2d2b98;
+            color: #f2f2f2;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s ease-in;
+        }
+
+        .detail-header button:hover {
+            background-color: transparent;
+            color: #2d2b98;
+        }
+
+        .side-bar {
+            background: #3a388b;
+            width: 210px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            overflow-y: auto;
+            transition: 0.6s ease;
+            transition-property: left;
+            z-index: 10;
+        }
+
+        header {
+            background: #15a143;
+        }
+
+        header img {
+            width: 100px;
+            height: 100px;
+            margin: 15px;
+            margin-left: 50px;
+            border-radius: 50%;
+            border: 3px solid #2d2b98;
+        }
+
+        header h1 {
+            text-align: center;
+            font-weight: 500;
+            font-size: 25px;
+            padding-bottom: 13px;
+            font-family: sans-serif;
+            letter-spacing: 2px;
+        }
+
+        .menu {
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        .menu .item {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .menu .item a {
+            color: #fff;
+            font-size: 16px;
+            text-decoration: none;
+            display: block;
+            padding: 5px 30px;
+            line-height: 40px;
+        }
+
+        .item-link {
+            margin: 7px;
+        }
+
+        .item1 {
+            margin: 10px;
+        }
+
+        .item a .dropdown {
+            position: absolute;
+            right: 0;
+            margin: 20px;
+            transition: 0.3s ease;
+        }
+
+        .item .sub-menu {
+            background: #4f4e83;
+        }
+
+         .btn-primary {
+            background-color: green;
+            color: white;
+            text-decoration: none;
+        }
+
+        .btn-secondary {
+            background-color: blue;
+            color: white;
+            text-decoration: none;
+        } 
+
+        .btn-primary,
+        .btn-secondary {
+        font-size: 18px; /* Adjust the font size as needed */
+        display: inline-block;
+        margin-top: 5px;
+        padding: 7px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        @media screen and (max-width: 980px) {
+            
+            .dashboard-container {
+                grid-template-columns: 1fr 1fr 1fr;
+                grid-template-areas:
+                   "total1 total2 total3" 
+                   "total4 total5 total6"
+                   "total7 total8 total9";
+            }
+        }
+        .guides {
+            margin-left: 150px;
+            background: red;
+            border: 1px solid #fff;
+            
+        }
+    
+        @media screen and (max-width: 768px) {
+            /* For screens smaller than 768px, display 2 cards per row */
+            .card {
+                width: calc(50% - 20px);
+            }
+        }
+    
+        @media screen and (max-width: 680px) {
+            /* For screens smaller than 680px, display 1 card per row */
+            .card {
+                width: 100%;
+            }
+        }
+
+        @media screen and (max-width: 680px) {
+            
+            .profile-name {
+                display: none;
+            }
+
+            .side-bar {
+                display: none;
+            }
+
+            main {
+                padding: 6rem 2rem 2rem 2rem;
+            }
+
+            #toggle:checked ~ .sidebar {
+                display: block;
+                width: 200px;
+            }
+
+            #toggle:checked ~ .sidebar .sidebar-menu > p {
+                display: block;
+            }
+
+            #toggle:checked ~ main {
+                padding: 6rem 2rem 2rem 2rem;
+            }
+
+            .dashboard-container {
+                grid-template-columns: 1fr;
+                grid-template-areas:
+                  "total1"
+                  "total2"
+                  "total3"
+                  "total4"
+            }
+        }
+
+
+        .category-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+        }
+    
+        .cat-card {
+            width: calc(90% - 20px);  /* 33.33% width with 20px gap */
+            background-color: green;
+            color: white;
+            padding: 20px;
+            box-sizing: border-box;
+            border: 1px solid white;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+    
+        @media screen and (max-width: 768px) {
+            /* For screens smaller than 768px, display 2 cards per row */
+            .cat-card {
+                width: calc(50% - 20px);
+            }
+        }
+    
+        @media screen and (max-width: 480px) {
+            /* For screens smaller than 480px, display 1 card per row */
+            .cat-card {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    
+
+    <!-- Navbar -->
+    <nav class='navbar'>
+        <h4>Dashboard</h4>
+        <button class="site-btn"><a href="{% url 'quiz-home' %}">View Site</a></button>
+        <div class="profile">
+            <span class="fas fa-search"></span>
+            <img class="profile-image" src="https://plus.unsplash.com/premium_photo-1683121366070-5ceb7e007a97?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D">
+            <p class="profile-name">Mike Manoti</p>
+        </div>
+    </nav>
+    <!-- Sidebar -->
+    <div class="side-bar">
+      <header>
+       <img src="https://plus.unsplash.com/premium_photo-1683121366070-5ceb7e007a97?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D" alt="profile picture">
+       <h1>Logo Here</h1>  
+    </header>
+
+    <div class="menu">
+        <div class="item"><a class="item-link sub-btn"><i class="fas fa-solid fa-book item1"></i>TEAS
+        <i class="fas fa-angle-down dropdown"></i>
+        </a>
+        <div class="sub-menu">
+            <a href="{% url 'math-quizzes-category' %}" class="sub-item"><i class="fas fa-solid item1 fa-calculator"></i>Math</a>
+            <a href="#" class="sub-item"><i class="fas fa-solid item1 fa-language"></i>Language</a>
+            <a href="#" class="sub-item"><i class="fas fa-solid item1 fa-book-open"></i>Reading</a>
+            <a href="#" class="sub-item"><i class="fas fa-solid item1 fa-rocket"></i>Science</a>
+        </div>
+    
+    </div>
+        <div class="item"><a href="#" class="item-link"><i class="fas fa-chart-line item1"></i>Statistics</a></div>
+        <div class="item"><a href="#" class="item-link"><i class="fas fa-id-card item1"></i>Contacts</a></div>
+        <div class="item"><a href="#" class="item-link"><i class="fas fa-cog item1"></i>Settings</a></div>
+    </div>
+    </div>    
+
+    {% block content %}{% endblock %}
+
+<!--Jquery CDN Link-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    // jquery for toggle sub menus
+    $('.sub-btn').click(function() {
+        $(this).next('.sub-menu').slideToggle();
+        $(this).find('.dropdown').toggleClass('rotate');
+    })
+})
+
+
+</script>
+</body>
+
+</html>
