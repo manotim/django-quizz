@@ -11,8 +11,3 @@ class Question(models.Model):
 
     def __str__(self):
         return self.question_text
-    
-class Subject(models.Model):
-    subject_name = models.CharField(max_length=255)
-    subject_description = models.CharField(max_length=255)
-    subject_icon = models.CharField(max_length=100)

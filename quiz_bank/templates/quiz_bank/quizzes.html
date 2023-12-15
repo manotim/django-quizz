@@ -35,7 +35,7 @@
                     <i class="fas fa-solid fa-language"></i>
                  </div>
              </div>
-             <a href="#" class="btn-secondary">View Language Content</a>
+             <a href="{% url 'language-quizzes-category' %}" class="btn-secondary">View Language Content</a>
         </div>
         <div class="card total3">
             <div class="info">
@@ -63,60 +63,6 @@
              </div>
              <a href="#" class="btn-secondary">View Science Content</a>
         </div>
-        <!--4 cards top-->
-        {% comment %} <a href="{% url 'math-quizzes-category' %}" class="card card-link">
-        <div class="total1">
-            <div class="info">
-                <div class="info-detail">
-                    <h3>Math</h3>
-                    <p>Test your problem-solving skills with a diverse math test. Explore study guides to review concepts, formulas, and tips for better perfomance.</p>
-                </div>
-                <div class="info-image">
-                    <i class="fas fa-solid fa-calculator"></i>
-                </div>
-            </div>
-        </div>
-       </a>
-       <a href="#" class="card card-link">
-        <div class="total2">
-            <div class="info">
-                <div class="info-detail">
-                    <h3>Language</h3>
-                    <p>Enhance your language proficiency with an interactive grammar and vocabulary test. Access study guides for improved communication</p>
-                </div>
-                <div class="info-image">
-                    <i class="fas fa-solid fa-language"></i>
-                </div>
-            </div>
-        </div>
-    </a>
-    <a href="#" class="card card-link">
-        <div class="total3">
-            <div class="info">
-                <div class="info-detail">
-                    <h3>Reading</h3>
-                    <p>Enjoy a reading comprehension test with intriguing passages. Discover study guides to enhance critical reading and analytical thinking.</p>
-                </div>
-                <div class="info-image">
-                    <i class="fas fa-solid fa-book-open"></i>
-                </div>
-            </div>
-        </div>
-    </a>
-    
-    <a href="#" class="card card-link">
-        <div class="total4">
-            <div class="info">
-                <div class="info-detail">
-                    <h3>Science</h3>
-                    <p>Dive into the world of science with tests across various disciplines. Explore well detailed study guides for in-depth scientific knowledge and applications.</p>
-                </div>
-                <div class="info-image">
-                    <i class="fas fa-solid fa-rocket"></i>
-                </div>
-            </div>
-        </div>
-    </a> {% endcomment %}
     </div>
 </main>
 {% endblock content %}
