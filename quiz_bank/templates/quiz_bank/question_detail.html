@@ -44,27 +44,25 @@
     <br>
     <div class="">
         <form>
-            {% for question in questions %}
-            <h1><a href="{% url 'abs-change-practice-detail' question.id %}" style="text-decoration: none; color: black;">{{ forloop.counter }}. {{ question.question_text }}</h1>
+            <h1>{{ forloop.counter }}. {{ object.question_text }}</h1>
             <div class="options">
-                <input type="radio" name="{{ question.question_text }}" value="{{ question.option_a }}">
-                A. {{ question.option_a }}<br>
-                <input type="radio" name="{{ question.question_text }}" value="{{ question.option_b }}">
-                B. {{ question.option_b }}<br>
-                <input type="radio" name="{{ question.question_text }}" value="{{ question.option_c }}">
-                C. {{ question.option_c }}<br>
-                <input type="radio" name="{{ question.question_text }}" value="{{ question.option_d }}">
-                D. {{ question.option_d }}<br>
+                <input type="radio" name="{{ object.question_text }}" value="{{ object.option_a }}">
+                A. {{ object.option_a }}<br>
+                <input type="radio" name="{{ object.question_text }}" value="{{ object.option_b }}">
+                B. {{ object.option_b }}<br>
+                <input type="radio" name="{{ object.question_text }}" value="{{ object.option_c }}">
+                C. {{ object.option_c }}<br>
+                <input type="radio" name="{{ object.question_text }}" value="{{ object.option_d }}">
+                D. {{ object.option_d }}<br>
             </div>
             <button type="button" class="toggle-answer">Show Answer</button>
             <div class="answer-section" style="display: none;">
                 <i>
-                    <p>Correct Answer is: <b>{{ question.correct_answer }}</b></p>
+                    <p>Correct Answer is: <b>{{ object.correct_answer }}</b></p>
                 </i>
                 <h4>Explanation:</h4>
-                <p>{{ question.explanation }}</p>
+                <p>{{ object.explanation }}</p>
             </div>
-            {% endfor %}
         </form>
     </div>
 </main>

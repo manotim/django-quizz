@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 class Question(models.Model):
     question_text = models.TextField()
@@ -11,3 +12,9 @@ class Question(models.Model):
 
     def __str__(self):
         return self.question_text
+    
+    def get_absolute_url(self):
+        return reverse("abs-change-practice-detail", kwargs={"pk": self.pk})
+    
+    
+

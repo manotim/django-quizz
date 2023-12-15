@@ -1,4 +1,10 @@
 from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import (
+    ListView, 
+    DetailView, 
+    CreateView
+    )
 from .models import *
 
 # Create your views here.
@@ -23,6 +29,18 @@ def abs_change_practice(request):
         'questions': Question.objects.all()
     }
     return render(request, 'quiz_bank/math/guides/abs_change_prac.html', context)
+
+class QuestionListView(ListView):
+    model = Question
+    template_name = 'quiz_bank/math/guides/abs_change_prac.html'
+    context_object_name = 'questions'
+
+class QuestionDetailView(DetailView):
+    model = Question
+
+class QuestionCreateView(CreateView):
+    model = Question
+    fields = ['question_text', 'option_a', 'option_b', 'option_c', 'option_d', 'correct_answer', 'explanation']
 
 def language_quizzes_category(request):
     return render(request, 'quiz_bank/language/category_language.html')
