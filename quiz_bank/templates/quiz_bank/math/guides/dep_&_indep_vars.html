@@ -1,0 +1,86 @@
+{% extends 'quiz_bank/base.html' %}
+
+{% block title %}Django Quiz - Category: {{ category }}{% endblock title %}
+
+{% block styles %}
+<style>
+    .dashboard-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: space-between;
+    }
+
+    .card {
+        width: calc(43.33% - 20px);  /* 33.33% width with 20px gap */
+        background-color: #f0f0f0;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    
+
+    @media screen and (max-width: 768px) {
+        /* For screens smaller than 768px, display 2 cards per row */
+        .card {
+            width: calc(50% - 20px);
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        /* For screens smaller than 480px, display 1 card per row */
+        .card {
+            width: 100%;
+        }
+    }
+</style>
+{% endblock styles %}
+
+{% block content %}
+<main class="guides">
+    <h4 style="color: green;">Dependent And Independent Variables Notes</h4>
+    
+    <br>
+
+    <p>
+        <strong>1. Create a Budget:</strong> Start by creating a detailed budget that outlines your income, expenses, and savings goals. This will help you track where your money is going and plan accordingly.
+    </p>
+
+    <p>
+        <strong>2. Emergency Fund:</strong> Build and maintain an emergency fund equivalent to 3-6 months of living expenses. This fund acts as a financial safety net in case of unexpected expenses or job loss.
+    </p>
+
+    <p>
+        <strong>3. Save and Invest:</strong> Allocate a portion of your income for savings and investments. Consider long-term investments like stocks and retirement accounts to build wealth over time.
+    </p>
+
+    <p>
+        <strong>4. Control Debt:</strong> Manage and reduce high-interest debt. Prioritize paying off credit cards and loans to save money on interest payments and improve your overall financial health.
+    </p>
+
+    <p>
+        <strong>5. Live Below Your Means:</strong> Avoid lifestyle inflation and unnecessary expenses. Live within or below your means to have room for savings and financial goals.
+    </p>
+
+    <p>
+        <strong>6. Track Expenses:</strong> Regularly monitor your spending to identify areas where you can cut back or save. Use tools and apps to track expenses and stay within your budget.
+    </p>
+
+    <p>
+        <strong>7. Financial Goals:</strong> Set short-term and long-term financial goals. Whether it's buying a home, saving for education, or retirement planning, having clear goals helps guide your financial decisions.
+    </p>
+
+    <p>
+        <strong>8. Diversify Investments:</strong> Spread your investments across different asset classes to reduce risk. Diversification can help protect your portfolio during market fluctuations.
+    </p>
+
+    <p>
+        <strong>9. Stay Informed:</strong> Stay updated on financial news and trends. Understanding economic factors can help you make informed decisions about your investments and overall money management.
+    </p>
+
+    <p>
+        <strong>10. Regular Review:</strong> Regularly review and adjust your budget and financial plan as your circumstances change. This ensures that your money management strategies remain effective over time.
+    </p>
+    <a href="#" class="btn-secondary">Take Practice Test</a>
+</main>
+{% endblock content %}
