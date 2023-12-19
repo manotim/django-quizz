@@ -17,11 +17,9 @@ def math_quizzes_category(request):
     return render(request, 'quiz_bank/math/category_math.html')
 
 def all_math_guides(request):
-    
     return render(request, 'quiz_bank/math/guides/all_guides.html')
 
 def abs_change_guide(request):
-    
     return render(request, 'quiz_bank/math/guides/abs_change.html')
 
 def money_management_guide(request):
@@ -62,7 +60,7 @@ class QuestionCreateView(CreateView):
     fields = ['question_text', 'option_a', 'option_b', 'option_c', 'option_d', 'correct_answer', 'explanation']
 
 
-
+# Languages
 def language_quizzes_category(request):
     return render(request, 'quiz_bank/language/category_language.html')
 
@@ -71,3 +69,50 @@ def all_language_guides(request):
 
 def intro_to_teas_language(request):
     return render(request, 'quiz_bank/language/guides/intro_to_teas_lang.html')
+
+def academic_thesis_guide(request):
+    return render(request, 'quiz_bank/language/guides/academic_thesis.html')
+
+def compound_and_simple_sentences_guide(request):
+    return render(request, 'quiz_bank/language/guides/comp_simp_sent.html')
+
+def coherence_in_writing_guide(request):
+    return render(request, 'quiz_bank/language/guides/coherence_writing.html')
+
+def dangling_modifiers_guide(request):
+    return render(request, 'quiz_bank/language/guides/dangling_modifiers.html')
+
+def parts_of_speech_guide(request):
+    return render(request, 'quiz_bank/language/guides/parts_of_speech.html')
+
+# Reading
+def reading_quizzes_category(request):
+    return render(request, 'quiz_bank/reading/category_reading.html')
+
+def all_reading_guides(request):
+    return render(request, 'quiz_bank/reading/guides/all_guides.html')
+
+def topic_main_idea_supporting_details(request):
+    return render(request, 'quiz_bank/reading/guides/T.M.S.Details.html')
+
+def summarizing_reading_guide(request):
+    return render(request, 'quiz_bank/reading/guides/summarizing.html')
+
+def seq_of_events_guide(request):
+    return render(request, 'quiz_bank/reading/guides/seq_of_events.html')
+
+def finding_info_in_text(request):
+    return render(request, 'quiz_bank/reading/guides/info_in_text.html')
+
+def inconsistencies_in_text(request):
+    return render(request, 'quiz_bank/reading/guides/inconsistencies_in_text.html')
+
+def predictions_on_information_guide(request):
+    return render(request, 'quiz_bank/reading/guides/predictions_on_info.html')
+
+# Science
+def science_quizzes_category(request):
+    return render(request, 'quiz_bank/science/category_science.html')
+
+def all_science_guides(request):
+    return render(request, 'quiz_bank/science/guides/all_guides.html')
