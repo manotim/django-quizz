@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'quiz_bank/categories.css' %}">
     <title>{% block title %}Django Quiz{% endblock %}</title>
     <style>
@@ -302,6 +303,52 @@
         cursor: pointer;
     }
 
+    .page-heading h1 {
+        font-style: 32px;
+        text-align: center;
+        background: linear-gradient(45deg, transparent, #15a143, transparent);
+        color: #fff;
+        border-radius: 6px;
+    }
+
+    .percentage-container {
+        display: flex;
+        justify-content: space-between;
+        background: red;
+    }
+
+    .header-score {
+        margin-right: 450px;
+        background: #15a143;
+        color: #fff;
+        border-radius: 3px;
+        padding: 7px;
+    }
+
+    .header-percentage {
+        color: #15a143;
+        background: #ccccd5;
+        border-radius: 50%;
+        font-weight: 600;
+        font-size: 20px;
+        padding: 7px;
+    }
+    .options .option {
+        width: 1%;
+        padding: 0px;
+        background: #ccccd5;
+        border: 2px solid rgba(255, 255, 255, .2);
+        {% comment %} border-radius: 3px;
+        font-size: 17px;
+        margin: 15px 0; {% endcomment %}
+        {% comment %} cursor: pointer; {% endcomment %}
+    }
+    
+    .options .option:hover {
+        background: rgba(255, 255, 255, .1);
+        background-color: rgba(255, 255, 255, .1);
+    }
+
         @media screen and (max-width: 980px) {
             
             .dashboard-container {
@@ -317,27 +364,6 @@
             border: 1px solid #fff;
             
         }
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     
         @media screen and (max-width: 768px) {
@@ -434,7 +460,7 @@
 
     <!-- Navbar -->
     <nav class='navbar'>
-        <h4>Dashboard</h4>
+        <h6>Dashboard</h6>
         <button class="site-btn"><a href="{% url 'quiz-home' %}">View Site</a></button>
         <div class="profile">
             <span class="fas fa-search"></span>

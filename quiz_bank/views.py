@@ -52,8 +52,8 @@ class QuestionListView(ListView):
     context_object_name = 'questions'
     paginate_by = 1
 
-class QuestionDetailView(DetailView):
-    model = Question
+# class QuestionDetailView(DetailView):
+#     model = Question
 
 class QuestionCreateView(CreateView):
     model = Question

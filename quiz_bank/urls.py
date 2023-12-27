@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import (
     QuestionListView, 
-    QuestionDetailView, 
+    # QuestionDetailView, 
     QuestionCreateView
 )
 from . import views
@@ -15,7 +15,7 @@ urlpatterns = [
     # math guides here
     path('category/math/guides/abs-change', views.abs_change_guide, name='abs-change-guide'),
     path('category/math/guides/abs-change-prac', QuestionListView.as_view(), name="abs-change-practice"),
-    path('category/math/guides/abs-change-prac/quiz/<int:pk>', QuestionDetailView.as_view(), name="abs-change-practice-detail"),
+    # path('category/math/guides/abs-change-prac/quiz/<int:pk>', QuestionDetailView.as_view(), name="abs-change-practice-detail"),
     path('category/math/guides/abs-change-prac/quiz/new/', QuestionCreateView.as_view(), name="abs-change-practice-create"),
 
     path('category/math/guides/money-management/', views.money_management_guide, name='money-management-guide'),

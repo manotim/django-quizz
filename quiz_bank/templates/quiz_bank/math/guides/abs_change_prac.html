@@ -4,6 +4,7 @@
 
 {% block styles %}
 <style>
+    /* Your existing styles */
     .guides-container {
         display: flex;
         flex-wrap: wrap;
@@ -17,8 +18,6 @@
         padding: 20px;
         box-sizing: border-box;
     }
-
-    
 
     @media screen and (max-width: 768px) {
         /* For screens smaller than 768px, display 2 cards per row */
@@ -40,66 +39,119 @@
 <main class="guides">
     <div class="guide-content"></div>
     <h1 style="color: green;">Absolute Change and Relative Change</h1>
-    
+
     <br>
-    <div class="">
-        <form>
+
+    <!-- Add this div to your HTML to display the percentage -->
+    <div id="percentage-container">
+        <span class='header-score'>Score: 0 / 5</span>
+        <span class='header-percentage'>0%</span>
+    </div>
+
+    <div class="quiz-box">
+        <form id="quiz-form">
             {% for question in questions %}
-            <h1><a href="{% url 'abs-change-practice-detail' question.id %}" style="text-decoration: none; color: black;">{{ forloop.counter }}. {{ question.question_text }}</h1>
-            <div class="options">
-                <input type="radio" name="{{ question.question_text }}" value="{{ question.option_a }}">
-                A. {{ question.option_a }}<br>
-                <input type="radio" name="{{ question.question_text }}" value="{{ question.option_b }}">
-                B. {{ question.option_b }}<br>
-                <input type="radio" name="{{ question.question_text }}" value="{{ question.option_c }}">
-                C. {{ question.option_c }}<br>
-                <input type="radio" name="{{ question.question_text }}" value="{{ question.option_d }}">
-                D. {{ question.option_d }}<br>
-            </div>
-            <button type="button" class="toggle-answer">Show Answer</button>
-            <div class="answer-section" style="display: none;">
-                <i>
-                    <p>Correct Answer is: <b>{{ question.correct_answer }}</b></p>
-                </i>
-                <h4>Explanation:</h4>
-                <p>{{ question.explanation }}</p>
+            <div class="question-container">
+                <h1><a href="#" style="text-decoration: none; color: black;">{{ page_obj.start_index|add:forloop.counter0 }}. {{ question.question_text }}</h1>
+                <div class="options">
+                    <input class='option' type="radio" name="{{ question.question_text }}" value="{{ question.option_a }}">
+                    A. {{ question.option_a }}<br>
+                    <input class='option' type="radio" name="{{ question.question_text }}" value="{{ question.option_b }}">
+                    B. {{ question.option_b }}<br>
+                    <input class='option' type="radio" name="{{ question.question_text }}" value="{{ question.option_c }}">
+                    C. {{ question.option_c }}<br>
+                    <input class='option' type="radio" name="{{ question.question_text }}" value="{{ question.option_d }}">
+                    D. {{ question.option_d }}<br>
+                </div>
+                <button type="button" class="toggle-answer">Show Answer</button>
+                <div class="answer-section" style="display: none;">
+                    <i>
+                        <p>Correct Answer is: <b>{{ question.correct_answer }}</b></p>
+                    </i>
+                    <h4>Explanation:</h4>
+                    <p>{{ question.explanation }}</p>
+                </div>
+                <br/>
+                <hr>
+                <br/>
             </div>
             {% endfor %}
-            {% if is_paginated %}
-
+        </form>
+        <div class="quiz-footer">
+            <span class="question-total">1 of 5 Questions</span>
+        </div>
+        {% if is_paginated %}
+        <div class="pagination-buttons">
             {% if page_obj.has_previous %}
             <a href="?page=1" class="btn btn-outline-info mb-4">First</a>
             <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-info mb-4">Previous</a>
             {% endif %}
 
             {% for num in page_obj.paginator.page_range %}
-               {% if page_obj.number == num %}
-               <a href="?page={{ num }}" class="btn btn-info mb-4">{{ num }}</a>
-               {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-               <a href="?page={{ num }}" class="btn btn-outline-info mb-4">{{ num }}</a>
-               {% endif %}
+            {% if page_obj.number == num %}
+            <a href="?page={{ num }}" class="btn btn-info mb-4">{{ num }}</a>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+            <a href="?page={{ num }}" class="btn btn-outline-info mb-4">{{ num }}</a>
+            {% endif %}
             {% endfor %}
 
             {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-info mb-4">Next</a>
+            <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-info mb-4 next-btn">Next</a>
             <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-outline-info mb-4">Last</a>
             {% endif %}
-
-            {% endif %}
-        </form>
+        </div>
+        {% endif %}
     </div>
 </main>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const toggleButtons = document.querySelectorAll('.toggle-answer');
-        toggleButtons.forEach(button => {
-            button.addEventListener('click', function () {
-                const answerSection = this.nextElementSibling;
-                answerSection.style.display = answerSection.style.display === 'none' ? 'block' : 'none';
-                this.innerText = answerSection.style.display === 'none' ? 'Show Answer' : 'Hide Answer';
+    
+    
+        document.addEventListener('DOMContentLoaded', function () {
+            var totalQuestions = {{ questions|length }};
+            var currentScore = 0;
+    
+            // Update the score and question number display
+            function updateScoreAndQuestionNumber() {
+                var scoreSpan = document.querySelector('.header-score');
+                scoreSpan.innerText = 'Score: ' + currentScore + ' / ' + totalQuestions;
+    
+                var currentPage = parseInt('{{ page_obj.number }}');
+                var questionTotalSpan = document.querySelector('.question-total');
+                questionTotalSpan.innerText = 'Question ' + currentPage + ' of ' + totalQuestions;
+            }
+    
+            // Add event listener to the form for question submission
+            document.getElementById('quiz-form').addEventListener('submit', function (event) {
+                event.preventDefault(); // Prevent the default form submission
+    
+                // Iterate through all questions in the form
+                document.querySelectorAll('.question-container').forEach(function (questionContainer, index) {
+                    var selectedOption = questionContainer.querySelector('input:checked');
+                    var correctAnswer = questionContainer.querySelector('.answer-section b').innerText;
+    
+                    // Check if user's answer matches the correct answer
+                    if (selectedOption && selectedOption.value === correctAnswer) {
+                        currentScore++; // Increment the score for correct answers
+                    }
+                });
+    
+                // Update the score and question number display
+                updateScoreAndQuestionNumber();
             });
+    
+            // Add event listener to show/hide answers on button click
+            document.querySelectorAll('.toggle-answer').forEach(function (toggleButton) {
+                toggleButton.addEventListener('click', function () {
+                    var answerSection = this.nextElementSibling;
+                    answerSection.style.display = answerSection.style.display === 'none' ? 'block' : 'none';
+                });
+            });
+    
+            // Update the score and question number display on page load
+            updateScoreAndQuestionNumber();
         });
-    });
+    
+    
 </script>
 {% endblock content %}
