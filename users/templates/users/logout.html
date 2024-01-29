@@ -30,10 +30,18 @@
   }
 {% endblock style %}
 {% block content %}
-  <h2>You have been logged out</h2>
-    <div class="border-top pt-3">
-      <small class="text-muted">
-        <a class="ml-2" href="{% url 'login' %}">Log In Again</a>
-      </small>
-    </div>
+  <!-- <div class="content-section">
+    <h2>You have been logged out</h2>
+    
+  </div> -->
+  {% if request.user.is_authenticated %}
+  <div class="content-section">
+    <form method="POST">{% csrf_token %}
+      <p>Are you sure you want to logout?</p>
+      <button class="btn btn-outline-info" type="submit">Yes, logout.</button>
+    </form>
+  </div>
+  {% else %}
+  <p>You're not already logged in. Would you like to <a href="{% url 'login' %}">login</a>?</p>
+  {% endif %}
 {% endblock content %}
